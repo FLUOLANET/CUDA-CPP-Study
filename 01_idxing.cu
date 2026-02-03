@@ -45,7 +45,7 @@
 // 큰 큐브 내 중간 큐브 위치: (blockIdx.x, blockIdx.y, blockIdx.z)
 // 중간 큐브 내 작은 큐브 위치: (threadIdx.x, threadIdx.y, threadIdx.z)
 
-__global__ void whoami(void) { // 원래 관습적으로 main함수에 __global__ 안붙인다
+__global__ void whoami(void) { 
     // 1. Gird 안에서 Block 위치 (단위: Block 개수)
     // == 큰 큐브 안에서 내가 몇 번째 중간 큐브? (단위: 중간 규브)
     int block_id = 
@@ -76,7 +76,7 @@ __global__ void whoami(void) { // 원래 관습적으로 main함수에 __global_
     threadIdx.x, threadIdx.y, threadIdx.z, thread_offset);
 }
 
-__host__ int main(int argc, char **argv) {
+__host__ int main(int argc, char **argv) { // 원래 관습적으로 main함수에 __host__ 안붙인다
     const int block_x = 2 , block_y = 8, block_z = 16; // block 256개
     // 한 block 당 thread 1024개 넣을 수 있다.(SM 하나에 CUDA 128개지만 1024개 thread가 와서 나머지 대기)
     const int thread_x = 8, thread_y = 8, thread_z = 8; // block 하나에 512 threads
